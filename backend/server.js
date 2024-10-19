@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const passportConfig = require("./lib/passportConfig");
 const cors = require("cors");
 const fs = require("fs");
-const dotenv = require("dotenv").config(); // Fixed the typo here
+const dotenv = require("dotenv").config(); 
 
 const mongo_db = process.env.MONGO_URI;
 
@@ -17,7 +17,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => console.log("Connected to DB"))
-  .catch((err) => console.error("MongoDB connection error:", err.message)); // Improved error logging
+  .catch((err) => console.error("MongoDB connection error:", err.message)); 
 
 // Initializing directories
 const publicDir = "./public";
