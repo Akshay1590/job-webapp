@@ -4,37 +4,41 @@ const mongoose = require("mongoose");
 const passportConfig = require("./lib/passportConfig");
 const cors = require("cors");
 const fs = require("fs");
-const dontenv = require("dotenv").config();
+const dotenv = require("dotenv").config(); // Fixed the typo here
 
+const mongo_db = process.env.MONGO_URI;
 
-const mongo_uri = process.env.MONGO_URI
-// MongoDB JN4WuBdE1P1bwV9G
+// Connect to MongoDB
 mongoose
-  .connect(mongo_uri, {
+  .connect(mongo_db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then((res) => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+  .then(() => console.log("Connected to DB"))
+  .catch((err) => console.error("MongoDB connection error:", err.message)); // Improved error logging
 
-// initialising directories
-if (!fs.existsSync("./public")) {
-  fs.mkdirSync("./public");
+// Initializing directories
+const publicDir = "./public";
+const resumeDir = `${publicDir}/resume`;
+const profileDir = `${publicDir}/profile`;
+
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir);
 }
-if (!fs.existsSync("./public/resume")) {
-  fs.mkdirSync("./public/resume");
+if (!fs.existsSync(resumeDir)) {
+  fs.mkdirSync(resumeDir);
 }
-if (!fs.existsSync("./public/profile")) {
-  fs.mkdirSync("./public/profile");
+if (!fs.existsSync(profileDir)) {
+  fs.mkdirSync(profileDir);
 }
 
 const app = express();
 const port = 4444;
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json()); // Support JSON encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // Support URL encoded bodies
 
 // Setting up middlewares
 app.use(cors());
