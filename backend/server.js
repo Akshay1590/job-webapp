@@ -42,10 +42,22 @@ app.use(bodyParser.urlencoded({ extended: true })); // Support URL encoded bodie
 
 // Setting up middlewares
 
+const allowedOrigins = [
+  "https://job-webapp-gray.vercel.app",
+  "http://localhost:3000", // For local development
+];
+
 app.use(cors({
-  origin: "*", 
-  credentials: true 
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, origin);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 app.use(passportConfig.initialize());
 
