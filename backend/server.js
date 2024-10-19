@@ -41,9 +41,10 @@ app.use(bodyParser.json()); // Support JSON encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Support URL encoded bodies
 
 // Setting up middlewares
+
 app.use(cors({
-  origin: "https://job-webapp-gray.vercel.app/signup",
-  credentials: true
+  origin: "*", 
+  credentials: true 
 }));
 app.use(express.json());
 app.use(passportConfig.initialize());
