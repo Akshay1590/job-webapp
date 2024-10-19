@@ -674,7 +674,7 @@ mongoose-type-email@^1.1.2:
   dependencies:
     validator "^13.1.17"
 
-mongoose@*, mongoose@^5.11.11:
+mongoose@^5.11.11:
   version "5.11.11"
   resolved "https://registry.npmjs.org/mongoose/-/mongoose-5.11.11.tgz"
   integrity sha512-JgKKAosJf6medPOZi2LmO7sMz7Sg00mgjyPAKari3alzL+R/n8D+zKK29iGtJpNNtv9IKy14H37CWuiaZ7016w==
