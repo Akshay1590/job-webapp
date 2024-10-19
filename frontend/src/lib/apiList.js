@@ -1,4 +1,4 @@
-export const server = "https://job-webapp.onrender.com/";
+export const server = "https://job-webapp.onrender.com";
 
 const apiList = {
   login: `${server}/auth/login`,
